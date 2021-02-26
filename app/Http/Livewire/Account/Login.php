@@ -12,7 +12,7 @@ class Login extends Component
 {
     use ThrottlesLogins;
 
-    public $email, $password, $show = false, $remember = 0;
+    public $email, $password, $remember = 0;
 
     protected $rules = [
         'email' => 'required|email',
@@ -23,11 +23,6 @@ class Login extends Component
     public function updated($property)
     {
         $this->validateOnly($property);
-    }
-
-    public function toggleShow()
-    {
-        $this->show = !$this->show;
     }
 
     public function login()

@@ -1,30 +1,30 @@
 <!-- Custom Styles -->
-<link href="{{ asset('public/assets/css/custom.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" />
 
 <!-- TableR -->
-<link href="{{ asset('public/assets/libs/selectize/dist/css/selectize.css') }}" rel="stylesheet" />
-{{-- <link href="{{asset('public/assets/libs/flatpickr/dist/flatpickr.min.css')}}" rel="stylesheet" /> --}}
-{{-- <link href="{{asset('public/assets/libs/nouislider/distribute/nouislider.min.css')}}" rel="stylesheet" /> --}}
-<link href="{{ asset('public/assets/css/tabler.min.css') }}" rel="stylesheet" />
-{{-- <link href="{{asset('public/assets/css/tabler-flags.min.css')}}" rel="stylesheet" /> --}}
-{{-- <link href="{{asset('public/assets/css/tabler-payments.min.css')}}" rel="stylesheet" /> --}}
-<link href="{{ asset('public/assets/css/tabler-vendors.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/libs/selectize/dist/css/selectize.css') }}" rel="stylesheet" />
+{{-- <link href="{{asset('assets/libs/flatpickr/dist/flatpickr.min.css')}}" rel="stylesheet" /> --}}
+{{-- <link href="{{asset('assets/libs/nouislider/distribute/nouislider.min.css')}}" rel="stylesheet" /> --}}
+<link href="{{ asset('assets/css/tabler.min.css') }}" rel="stylesheet" />
+{{-- <link href="{{asset('assets/css/tabler-flags.min.css')}}" rel="stylesheet" /> --}}
+{{-- <link href="{{asset('assets/css/tabler-payments.min.css')}}" rel="stylesheet" /> --}}
+<link href="{{ asset('assets/css/tabler-vendors.min.css') }}" rel="stylesheet" />
 
-<script src="{{ asset('public/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('public/assets/libs/jquery/dist/jquery.slim.min.js') }}"></script>
+<script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/libs/jquery/dist/jquery.slim.min.js') }}"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script src="{{ asset('public/assets/libs/selectize/dist/js/standalone/selectize.min.js') }}"></script>
-{{-- <script src="{{asset('public/assets/libs/flatpickr/dist/flatpickr.min.js')}}"></script> --}}
-{{-- <script src="{{asset('public/assets/libs/flatpickr/dist/plugins/rangePlugin.js')}}"></script> --}}
-{{-- <script src="{{asset('public/assets/libs/nouislider/distribute/nouislider.min.js')}}"></script> --}}
-<script src="{{ asset('public/assets/js/tabler.min.js') }}"></script>
+<script src="{{ asset('assets/libs/selectize/dist/js/standalone/selectize.min.js') }}"></script>
+{{-- <script src="{{asset('assets/libs/flatpickr/dist/flatpickr.min.js')}}"></script> --}}
+{{-- <script src="{{asset('assets/libs/flatpickr/dist/plugins/rangePlugin.js')}}"></script> --}}
+{{-- <script src="{{asset('assets/libs/nouislider/distribute/nouislider.min.js')}}"></script> --}}
+<script src="{{ asset('assets/js/tabler.min.js') }}"></script>
 
 
 <!-- Sweet Alert -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
     integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
     crossorigin="anonymous"></script>
-<script src="{{ asset('public/assets/js/swalmaker.js') }}"></script>
+<script src="{{ asset('assets/js/swalmaker.js') }}"></script>
 
 <!-- Date Picker -->
 <link rel="stylesheet"
@@ -38,6 +38,9 @@
 <!-- Date Range Picker -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<!-- AlpineJs -->
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
 
 <!-- Turbo Links -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"

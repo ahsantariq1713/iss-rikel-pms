@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', App\Http\Livewire\Account\Login::class)->name('login')->middleware('guest');
 
 Route::group(['middleware' => 'auth'],function () {
-    Route::get('/', App\Http\Livewire\Home::class)->name('home');
+    Route::get('/', App\Http\Livewire\Account\Dashboard::class)->name('dashboard');
     Route::get('/developers', App\Http\Livewire\Developer\DeveloperList::class)->name('developer-list');
     Route::get('/projects', App\Http\Livewire\Project\ProjectList::class)->name('project-list');
     Route::get('/project-details/{project}', App\Http\Livewire\Project\ProjectView::class)->name('project-view');
