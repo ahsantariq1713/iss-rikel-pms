@@ -60,9 +60,7 @@ class Login extends Component
 
         $this->clearLoginAttempts($request);
 
-        $redirect = '/';
-
-        Swal::redirect($this, 'success', 'Login Successful!', 'You will be redirected to dashboard.', $redirect, false, 1500);
+        Swal::redirect($this, 'success', 'Login Successful!', 'You will be redirected to dashboard.', route('dashboard'), false, 1500);
     }
 
     private function sendFailedError()
