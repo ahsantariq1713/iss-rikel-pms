@@ -1,0 +1,27 @@
+.select2-container {
+    width: 99.99% !important;
+}
+
+.is-invalid .selectize-input {
+    border: 1px solid #d63939 !important
+}
+
+.list-details .list-group-item:hover {
+    background-color: #f0f0f0;
+
+}
+
+
+.text-transparent{
+    color:transparent !important
+}
+
+
+
+.bg-primary-light{
+    background-color: #f2f8ff!important
+}
+
+.bg-border {
+    background-color: #f7f7f7!important;
+}
