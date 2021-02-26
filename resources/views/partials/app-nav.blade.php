@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li id="nav-home" class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block"><svg
                                     xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -20,6 +20,7 @@
                             </span>
                         </a>
                     </li>
+                    @can('viewAny', App\Models\Developer::class)
                     <li id="nav-developer-list" class="nav-item">
                         <a class="nav-link" href="{{ route('developer-list') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -40,6 +41,8 @@
                             </span>
                         </a>
                     </li>
+                    @endcan
+                    @can('viewAny', App\Models\Property::class)
                     <li id="nav-property-list" class="nav-item">
                         <a class="nav-link" href="{{ route('property-list') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -60,6 +63,7 @@
                             </span>
                         </a>
                     </li>
+                    @endcan
                     <li id="nav-project-list" class="nav-item">
                         <a class="nav-link" href="{{ route('project-list') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -78,6 +82,7 @@
                             </span>
                         </a>
                     </li>
+                    @can('viewAny', App\Models\User::class)
                     <li id="nav-member-list" class="nav-item">
                         <a class="nav-link" href="{{ route('team-list') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -94,6 +99,7 @@
                             </span>
                         </a>
                     </li>
+                    @endcan
                 </ul>
             </div>
         </div>

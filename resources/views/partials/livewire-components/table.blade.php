@@ -2,7 +2,7 @@
     @if ($tableEmtpty)
         <div class="empty">
             <div class="empty-img"><img
-                    src="{{ asset('public/assets/img/static/illustrations/undraw_No_data_re_kwbl.svg') }}" height="128"
+                    src="{{ asset('assets/img/static/illustrations/undraw_No_data_re_kwbl.svg') }}" height="128"
                     alt="">
             </div>
             <p class="empty-title m-0">No Results</p>
@@ -12,6 +12,7 @@
             <div class="empty-action">
                 {{-- data-bs-toggle="modal"
                     data-bs-target="#modal-{{ $entityIdentifier }}-create" --}}
+                @can('create', App\Models\Property::class)
                 <a href="javascript:void(0)" onclick="window.livewire.emit('create{{ $entityName }}')"
                     class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
@@ -23,6 +24,7 @@
                     </svg>
                     Add {{ $entityName }}
                 </a>
+                @endcan
 
                 @if ($importAllowed)
                     <div class="hr-text m-0 my-3 p-0">Or</div>
@@ -92,6 +94,7 @@
                             <line x1="14.5" y1="18" x2="20" y2="18" />
                         </svg>
                     </a>
+
                     <div class="dropdown-menu dropdown-menu-demo dropdown-menu-arrow">
                         @foreach ($columns as $column)
                             <div class=" dropdown-item">
@@ -162,6 +165,7 @@
                 </div>
                 <div class="col-auto ms-auto">
                     <div class="btn-list">
+                        @can('create', App\Models\Property::class)
                         <a href="javascript:void(0)" onclick="window.livewire.emit('create{{ $entityName }}')"
                             class="btn btn-primary d-none d-sm-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -184,6 +188,7 @@
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
                         </a>
+                        @endcan
                     </div>
                 </div>
 
@@ -463,7 +468,7 @@
             @if ($searchEmpty)
                 <div class="empty">
                     <div class="empty-img"><img
-                            src="{{ asset('public/assets/img/static/illustrations/undraw_No_data_re_kwbl.svg') }}"
+                            src="{{ asset('assets/img/static/illustrations/undraw_No_data_re_kwbl.svg') }}"
                             height="128" alt="">
                     </div>
                     <p class="empty-title m-0">No Results</p>

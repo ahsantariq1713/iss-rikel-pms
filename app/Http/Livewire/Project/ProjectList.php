@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Project;
 
 use App\Models\Project;
 use App\Traits\Searchable;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ProjectList extends Component
@@ -86,7 +86,11 @@ class ProjectList extends Component
 
     public function render()
     {
-        $entities = $this->getData();
+        $query = $this->getQuery();
+        $query->whereHas('team', function($team){
+            return $team->where('user_id' ,Auth::id());
+        });
+        $entities = $this->makePagination($query);
         return view('livewire.project.project-list', compact('entities'));
     }
 }

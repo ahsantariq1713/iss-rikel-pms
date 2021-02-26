@@ -5,7 +5,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href=".">
-                <img src="{{ asset('public/assets/img/static/logo.png') }}" width="110" height="32" alt="Tabler"
+                <img src="{{ asset('assets/img/static/logo.png') }}" width="110" height="32" alt="Tabler"
                     class="navbar-brand-image">
             </a>
         </h1>
@@ -55,7 +55,7 @@
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu" aria-expanded="false">
                     <span class="avatar avatar-sm"
-                        style="background-image: url({{ asset('public/assets/img/static/avatars/001m.jpg') }})"></span>
+                        style="background-image: url({{ asset('assets/img/static/avatars/001m.jpg') }})"></span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ $user->name }}</div>
                         <div class="mt-1 small text-muted">{{ $user->role }}</div>

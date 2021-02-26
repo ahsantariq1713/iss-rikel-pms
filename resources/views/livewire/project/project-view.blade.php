@@ -438,7 +438,7 @@
                 <div class="text-center">
                     <div class="empty">
                         <div class="empty-img"><img
-                                src="{{ asset('public/assets/img/static/illustrations/undraw_No_data_re_kwbl.svg') }}"
+                                src="{{ asset('assets/img/static/illustrations/undraw_No_data_re_kwbl.svg') }}"
                                 height="128" alt="">
                         </div>
                         <p class="empty-title m-0">No Results</p>

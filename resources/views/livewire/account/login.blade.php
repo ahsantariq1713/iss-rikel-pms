@@ -1,6 +1,6 @@
 <div class="container-tight py-6" id="div-login">
     <div class="text-center mb-4">
-        <a href="."><img src="{{ asset('public/assets/img/static/logo.png') }}" height="72" alt=""></a>
+        <a href="."><img src="{{ asset('assets/img/static/logo.png') }}" height="72" alt=""></a>
     </div>
 
     <form wire:submit.prevent="login" wire:loading.attr="disabled" wire:target="login" class="card card-md">

@@ -181,6 +181,13 @@ trait Searchable
 
     public function getData()
     {
+        $query = $this->getQuery();
+        return $this->makePagination($query);
+    }
+
+
+    public function getQuery()
+    {
         $query = $this->EntityClass::with($this->withList)
             ->where($this->whereRelationList)
             ->where($this->whereList)
@@ -200,6 +207,10 @@ trait Searchable
             $query = $query->where($key, 'like', '%' . $value . '%');
         }
 
+        return $query;
+    }
+
+    public function makePagination($query){
         $entities = $this->pageSize == 'All' ? $query->paginate($query->count()) : $query->paginate($this->pageSize);
 
         $this->searchEmpty = $entities->count() <= 0;
