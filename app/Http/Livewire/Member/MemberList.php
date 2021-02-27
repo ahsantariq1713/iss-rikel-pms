@@ -13,8 +13,12 @@ class MemberList extends Component
 
     protected $listeners = ['memberCreated', 'memberUpdated'];
 
-    public function memberCreated($user){}
-    public function memberUpdated($user){}
+    public function memberCreated($user)
+    {
+    }
+    public function memberUpdated($user)
+    {
+    }
 
     public function mount()
     {
@@ -23,17 +27,17 @@ class MemberList extends Component
         $this->entityNamePlural = 'Relocation Team';
         $this->entityIdentifier = 'member';
 
-
         $this->setSearchBy(['Id', 'Name', 'Email', 'Mobile Number']);
         $this->setSortBy(['Id', 'Name', 'Created At']);
 
 
         $this->setColumns([
-            ['key' => 'id',  'type' => 'text', 'header' => '#','display' => true],
+            ['key' => 'id',  'type' => 'text', 'header' => '#', 'display' => true],
             ['key' => 'imageText', 'type' => 'imageText', 'header' => 'Image', 'display' => true],
-            ['key' => 'name', 'type' => 'text', 'header' => 'Name','display' => true],
-            ['key' => 'email', 'type' => 'text', 'header' => 'Email','display' => true],
-            ['key' => 'mobile_number', 'type' => 'text', 'header' => 'Mobile Number','display' => true],
+            ['key' => 'name', 'type' => 'text', 'header' => 'Name', 'display' => true],
+            ['key' => 'email', 'type' => 'text', 'header' => 'Email', 'display' => true],
+            ['key' => 'mobile_number', 'type' => 'text', 'header' => 'Mobile Number', 'display' => true],
+            ['key' => 'role', 'type' => 'text', 'header' => 'Role', 'display' => true],
             [
                 'key' => 'status', 'type' => 'badge', 'header' => 'Status', 'display' => true,
                 'scheme' => [
@@ -47,42 +51,61 @@ class MemberList extends Component
 
         $this->setListColumns([
             ['key' => 'imageText', 'type' => 'imageText', 'header' => 'Image', 'display' => false],
-            ['key' => 'name', 'type' => 'text', 'header' => 'Name','display' => true],
-            ['key' => 'email', 'type' => 'text', 'header' => 'Email','display' => true],
+            ['key' => 'name', 'type' => 'text', 'header' => 'Name', 'display' => true],
+            ['key' => 'email', 'type' => 'text', 'header' => 'Email', 'display' => true],
         ]);
 
-        $this->setStateFilters([
-            'status' =>
+        $this->setStateFilters(
             [
-                'display' => 'Status', 'scheme' => [
-                    ['mode' => 'Active', 'color' => 'success'],
-                    ['mode' => 'Blocked', 'color' => 'danger']
+                'status' =>
+                [
+                    'display' => 'Status', 'scheme' => [
+                        ['mode' => 'Active', 'color' => 'success'],
+                        ['mode' => 'Blocked', 'color' => 'danger']
+                    ]
+                ]
+            ,
+
+                'role' =>
+                [
+                    'display' => 'Role', 'scheme' => [
+                        ['mode' => 'Worker', 'color' => 'success'],
+                        ['mode' => 'Supervisor', 'color' => 'danger']
+                    ]
                 ]
             ]
-        ]);
+
+        );
 
         // $this->setDateRanges(['Updated Date Range' => 'updated_at', 'Created Date Range' => 'created_at' ]);
 
         //$this->setListViewDefault();
 
-        $this->setWhereRelationList([
-            ['id' , '!=' , Auth::id()]
+        $this->setwhereList([
+            ['id', '!=', Auth::id()],
+            ['role' , '!=' , 'Administrator']
         ]);
-        $this->initSearch([['key' => 'param' , 'value' => 'Name']]);
 
+        $this->initSearch([['key' => 'param', 'value' => 'Name']]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $this->emit('editMember', $id);
     }
 
-    public function updated($property){
+    public function updated($property)
+    {
         $this->updatedSearch($property);
     }
 
     public function render()
     {
-        $entities = $this->getData();
+        $query = $this->getQuery();
+        if(Auth::user()->isSupervisor()){
+            $query->where('role', 'Worker');
+        }
+        $entities = $this->makePagination($query);
         return view('livewire.member.member-list', compact('entities'));
     }
 }

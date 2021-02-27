@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Developer;
 
+use App\Helpers\ActivityLogger;
 use App\Helpers\Swal;
 use App\Models\Developer;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DeveloperCreate extends Component
@@ -44,6 +46,7 @@ class DeveloperCreate extends Component
         $this->validate();
         $this->developer->save();
         $this->emit('developerCreated', $this->developer);
+        ActivityLogger::created(Auth::user(), $this->developer);
         Swal::alert($this, 'success', 'Developer Added', 'Developer added to the system', 'Ok', 1500, 'modal-developer-create-dismiss');
     }
 

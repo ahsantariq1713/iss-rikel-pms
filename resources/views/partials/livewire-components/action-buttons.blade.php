@@ -1,3 +1,4 @@
+@can('update', $entity)
 <a href="javascript:void(0)" onclick="window.livewire.emit('edit{{ $entityName }}', {{ $entity->id }})"
     class="list-group-item-actions  show text-decoration-none" title="Edit">
     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -7,6 +8,8 @@
         <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
     </svg>
 </a>
+@endcan
+@can('view', $entity)
 @if ($viewMode == 'redirect')
     <a href="{{ route($entityIdentifier . '-view', [$entity]) }}"
         class="list-group-item-actions show text-decoration-none link-secondary" title="View">
@@ -28,3 +31,4 @@
         </svg>
     </a>
 @endif
+@endcan

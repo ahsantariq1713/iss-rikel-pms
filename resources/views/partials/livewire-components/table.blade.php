@@ -12,7 +12,7 @@
             <div class="empty-action">
                 {{-- data-bs-toggle="modal"
                     data-bs-target="#modal-{{ $entityIdentifier }}-create" --}}
-                @can('create', App\Models\Property::class)
+                @can('create', 'App\Models\\' . $EntityClass)
                 <a href="javascript:void(0)" onclick="window.livewire.emit('create{{ $entityName }}')"
                     class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
@@ -110,6 +110,7 @@
                 </div>
                 <div class="col-auto ms-auto pe-0">
                     <div class="btn-list">
+                        @can('import', 'App\Models\\' . $EntityClass)
                         @if ($importAllowed)
                             <a href="javascript:void(0)"
                                 onclick="window.livewire.emit('{{ $entityIdentifier }}Import')"
@@ -137,6 +138,7 @@
                                 </svg>
                             </a>
                         @endif
+                        @endcan
                         <a href="javascript:void(0)" wire:click='createPDF'
                             class="btn btn-white d-none d-sm-inline-block">
                             <div class="spinner-border spinner-border-sm me-2" wire:loading wire:target='createPDF'>
@@ -165,7 +167,7 @@
                 </div>
                 <div class="col-auto ms-auto">
                     <div class="btn-list">
-                        @can('create', App\Models\Property::class)
+                        @can('create', 'App\Models\\' . $EntityClass)
                         <a href="javascript:void(0)" onclick="window.livewire.emit('create{{ $entityName }}')"
                             class="btn btn-primary d-none d-sm-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"

@@ -15,7 +15,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body pb-0">
 
                     <div class="form-group mb-3">
                         <label class="form-label">Name</label>
@@ -44,14 +44,53 @@
                         @enderror
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Block Member</label>
+                    <div class="form-selectgroup-boxes row mb-3">
+                        <label class="form-label">Role Type</label>
+                        <div class="col-lg-6">
+                          <label class="form-selectgroup-item mb-3">
 
-                        <label class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" value="Blocked" wire:model.lazy="isBlocked">
-                            <span class="form-check-label">Block</span>
-                        </label>
-                        <p class="m-0 p-0 text-muted">Team member cannot login until you unblock manually</p>
+                            <input type="radio" name='role' value="2" class="form-selectgroup-input"  wire:model.defer='role' {{Auth::user()->isSupervisor() ? 'disabled' : ''}}>
+                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                              <span class="me-3">
+                                <span class="form-selectgroup-check"></span>
+                              </span>
+                              <span class="form-selectgroup-label-content">
+                                <span class="form-selectgroup-title strong mb-1">Supervisor</span>
+                                <span class="d-block text-muted">Can add workers, assign projects and have all permissions.</span>
+                              </span>
+                            </span>
+                          </label>
+                        </div>
+                        <div class="col-lg-6">
+                          <label class="form-selectgroup-item mb-3">
+                            <input type="radio" name='role' value="1" class="form-selectgroup-input" wire:model.defer='role'>
+                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                              <span class="me-3">
+                                <span class="form-selectgroup-check"></span>
+                              </span>
+                              <span class="form-selectgroup-label-content">
+                                <span class="form-selectgroup-title strong mb-1">Worker</span>
+                                <span class="d-block text-muted">Can only work on assigned projects and cannot edit or delete projects.</span>
+                              </span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="modal-body ">
+                    <div class="form-group mb-3">
+                        <div class="d-flex justify-content-between my-auto">
+                            <div>
+                                <label class="form-label pb-0 mb-0">Block Member</label>
+                                <p class="m-0 p-0 text-muted">Team member cannot login until you unblock manually</p>
+                            </div>
+                            <label class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="Blocked" wire:model.lazy="isBlocked">
+                                <span class="form-check-label">Block</span>
+                            </label>
+                        </div>
+                </div>
                 </div>
 
                 <div class="modal-footer">

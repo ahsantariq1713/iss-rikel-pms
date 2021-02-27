@@ -11,14 +11,15 @@ class DeveloperPolicy
     use HandlesAuthorization;
 
     public function before(User $user){
-        return $user->isAdmin();
+        if($user->isAdmin() || $user->isSupervisor()){
+            return true;
+        }
     }
 
     public function viewAny(User $user)
     {
         //
     }
-
 
     public function view(User $user, Developer $developer)
     {
@@ -27,19 +28,18 @@ class DeveloperPolicy
 
     public function create(User $user)
     {
-       //
+        //
     }
-
 
     public function update(User $user, Developer $developer)
     {
-       //
+        //
     }
 
 
     public function delete(User $user, Developer $developer)
     {
-       //
+        //
     }
 
 

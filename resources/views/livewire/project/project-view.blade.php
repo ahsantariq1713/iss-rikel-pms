@@ -108,8 +108,13 @@
             <li class="nav-item">
                 <a href="#tabs-7" class="nav-link" wire:ignore.self data-bs-toggle="tab">Invoices</a>
             </li>
+            @can('assign', $project)
             <li class="nav-item">
                 <a href="#tabs-8" class="nav-link" wire:ignore.self data-bs-toggle="tab">Team</a>
+            </li>
+            @endcan
+            <li class="nav-item">
+                <a href="#tabs-9" class="nav-link" wire:ignore.self data-bs-toggle="tab">Activities</a>
             </li>
 
         </ul>
@@ -121,16 +126,18 @@
                     <div class="card">
                         <div class="card-header pb-0 d-flex  justify-content-between">
                             <h4 class="m-0 mb-2">Details</h4>
+                            @can('update', $project)
                             <a href="javascript:void(0)"
-                                onclick="window.livewire.emit('editProject', {{ $project->id }})" class="mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
-                                    <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
-                                </svg>
-                            </a>
+                            onclick="window.livewire.emit('editProject', {{ $project->id }})" class="mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                                <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+                            </svg>
+                        </a>
+                            @endcan
                         </div>
 
                         <div class="list-group list-group-flush list-details">
@@ -150,11 +157,15 @@
                                     <div class="col-4  d-flex justify-content-start">
                                         <span class="text-muted">Developer</span>
                                     </div>
+
                                     <div class="col text-left d-flex justify-content-between">
                                         <span> {{ $project->developer_name }}</span>
+                                        @can('update', $project)
                                         <a href="javascript:void(0)" class="small"
                                             onclick="window.livewire.emit('attachDeveloper', {{ $project->id }})">Change</a>
+                                        @endcan
                                     </div>
+
                                 </div>
                             </div>
 
@@ -166,8 +177,10 @@
                                         </div>
                                         <div class="col text-left d-flex justify-content-between">
                                             <span> {{ $project->property->name }}</span>
+                                            @can('update', $project)
                                             <a href="javascript:void(0)" class="small"
                                                 onclick="window.livewire.emit('attachProperty', {{ $project->id }})">Change</a>
+                                            @endcan
                                         </div>
                                     </div>
                                 </div>
@@ -315,28 +328,10 @@
         <div class="tab-pane" wire:ignore.self id="tabs-2">
             <div class="row">
                 <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                    @if ($project->developer->email == null)
-                        <div class="alert alert-danger bg-white">
-                            <h4 class="text-danger m-0 mb-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <circle cx="12" cy="12" r="9" />
-                                    <line x1="12" y1="8" x2="12" y2="12" />
-                                    <line x1="12" y1="16" x2="12.01" y2="16" />
-                                </svg>
-                                Warning
-                            </h4>
-                            <span>Please update developer information like email and phone number. Otherwire you
-                                will
-                                not be
-                                able to send emails and other notifications to this developer </span>
-                        </div>
-                    @endif
                     <div class="card">
                         <div class="card-header pb-0 d-flex  justify-content-between">
                             <h4 class="m-0 mb-2">Developer Details</h4>
+                            @can('update', $project->developer)
                             <a href="javascript:void(0)"
                                 onclick="window.livewire.emit('editDeveloper', {{ $project->developer->id }})"
                                 class="mb-2">
@@ -348,6 +343,7 @@
                                     <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
                                 </svg>
                             </a>
+                            @endcan
                         </div>
 
                         <div class="list-group list-group-flush list-details">
@@ -446,6 +442,7 @@
                             No property attached yet.
                         </p>
                         <div class="empty-action">
+                            @can('update', $project)
                             <a href="javascript:void(0)"
                                 onclick="window.livewire.emit('attachProperty', {{ $project->id }})"
                                 class="btn btn-primary">
@@ -458,34 +455,17 @@
                                 </svg>
                                 Attach Property
                             </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
             @else
                 <div class="row">
                     <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-                        @if ($project->developer->email == null)
-                            <div class="alert alert-danger bg-white">
-                                <h4 class="text-danger m-0 mb-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <circle cx="12" cy="12" r="9" />
-                                        <line x1="12" y1="8" x2="12" y2="12" />
-                                        <line x1="12" y1="16" x2="12.01" y2="16" />
-                                    </svg>
-                                    Warning
-                                </h4>
-                                <span>Please update developer information like email and phone number. Otherwire you
-                                    will
-                                    not be
-                                    able to send emails and other notifications to this developer </span>
-                            </div>
-                        @endif
                         <div class="card">
                             <div class="card-header pb-0 d-flex  justify-content-between">
                                 <h4 class="m-0 mb-2">Basic</h4>
+                                @can('update', $project->property)
                                 <a href="javascript:void(0)"
                                     onclick="window.livewire.emit('editProperty', {{ $project->property->id }})"
                                     class="mb-2">
@@ -497,6 +477,7 @@
                                         <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
                                     </svg>
                                 </a>
+                                @endcan
                             </div>
 
                             <div class="list-group list-group-flush list-details">
@@ -649,7 +630,7 @@
                     <div class="card">
                         <div class="card-header pb-0 d-flex  justify-content-between">
                             <h4 class="m-0 mb-2">Phases</h4>
-                            <a href="javascript:void(0)"
+                            {{-- <a href="javascript:void(0)"
                                 onclick="window.livewire.emit('editProject', {{ $project->id }})" class="mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -658,7 +639,7 @@
                                     <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
                                     <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
                                 </svg>
-                            </a>
+                            </a> --}}
                         </div>
                         <div class="p-4">
                             <ul class="list list-timeline">
@@ -700,9 +681,16 @@
                                                 <p class="list-timeline-title">{{ $phase->name }}</p>
                                                 <p class="text-muted">{{ $phase->description }}</p>
                                             @elseif($phase == $project->current_phase)
-                                                <p class="list-timeline-title"><a class="text-decration-none"
-                                                        href="javascript:void(0)"
-                                                        onclick="window.livewire.emit('completePhase', {{ $phase->id }})">{{ $phase->name }}</a>
+                                                <p class="list-timeline-title">
+                                                    @if(Auth::user()->can('update', $phase))
+                                                    <a class="text-decration-none"
+                                                    href="javascript:void(0)"
+                                                    onclick="window.livewire.emit('completePhase', {{ $phase->id }})">{{ $phase->name }}</a>
+                                                    @else
+                                                    <a class="text-decration-none"
+                                                    href="javascript:void(0)">{{ $phase->name }}</a>
+                                                    @endif
+
                                                 </p>
                                             @else
                                                 <p class="list-timeline-title">{{ $phase->name }}</p>
@@ -739,11 +727,19 @@
                 </div>
             </div>
         </div>
+        @can('assign', $project)
         <div class="tab-pane" wire:ignore.self id="tabs-8">
             <div class="row">
                 <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
                    <livewire:project.project-team :project='$project' />
-
+                </div>
+            </div>
+        </div>
+        @endcan
+        <div class="tab-pane" wire:ignore.self id="tabs-9">
+            <div class="row">
+                <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+                   <livewire:project.project-activities :projectId='$project->id' />
                 </div>
             </div>
         </div>

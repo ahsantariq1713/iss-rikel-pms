@@ -4,12 +4,13 @@ namespace App\Http\Livewire\Project;
 
 use App\Models\Project;
 use App\Traits\Searchable;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ProjectList extends Component
 {
-    use Searchable;
+    use Searchable, AuthorizesRequests;
 
     protected $listeners = ['projectCreated', 'projectUpdated'];
 
@@ -22,6 +23,7 @@ class ProjectList extends Component
 
     public function mount()
     {
+        $this->authorize('viewAny', App\Models\Project::class);
         $this->registerEntity(Project::class);
         $this->entityName = 'Project';
         $this->entityNamePlural = 'Projects';
@@ -87,9 +89,11 @@ class ProjectList extends Component
     public function render()
     {
         $query = $this->getQuery();
-        $query->whereHas('team', function($team){
-            return $team->where('user_id' ,Auth::id());
-        });
+        if(Auth::user()->isWorker()){
+            $query->whereHas('team', function($team){
+                return $team->where('user_id' ,Auth::id());
+            });
+        }
         $entities = $this->makePagination($query);
         return view('livewire.project.project-list', compact('entities'));
     }

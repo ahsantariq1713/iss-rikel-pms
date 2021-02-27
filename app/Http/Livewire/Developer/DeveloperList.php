@@ -5,13 +5,14 @@ namespace App\Http\Livewire\Developer;
 use App\Helpers\StringConvertor;
 use App\Models\Developer;
 use App\Traits\Searchable;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 
 class DeveloperList extends Component
 {
 
-    use Searchable;
+    use Searchable, AuthorizesRequests;
 
     protected $listeners = ['developerCreated', 'developerUpdated'];
 
@@ -20,6 +21,7 @@ class DeveloperList extends Component
 
     public function mount()
     {
+        $this->authorize('viewAny', App\Models\Developer::class);
         $this->registerEntity(Developer::class);
         $this->entityName = 'Developer';
         $this->entityNamePlural = 'Developers';
@@ -55,7 +57,6 @@ class DeveloperList extends Component
         //$this->setListViewDefault();
 
         $this->initSearch([['key' => 'param' , 'value' => 'Name']]);
-
 
     }
 

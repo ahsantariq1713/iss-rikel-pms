@@ -9,33 +9,38 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-
     public function before(User $user){
-        return $user->isAdmin();
+        if( $user->isAdmin()){
+            return true;
+        }
     }
 
     public function viewAny(User $user)
     {
-        //
+        return $user->isSupervisor();
     }
 
 
     public function view(User $user, User $model)
     {
-        //
+        return $user->isSupervisor();
     }
 
 
     public function create(User $user)
+    {
+        return $user->isSupervisor();
+    }
+
+    public function createSuper(User $user)
     {
         //
     }
 
     public function update(User $user, User $model)
     {
-        //
+        return ($user->isSupervisor() && $model->role == 'Worker');
     }
-
 
     public function delete(User $user, User $model)
     {

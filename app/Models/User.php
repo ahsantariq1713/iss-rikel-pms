@@ -18,7 +18,8 @@ class User extends Authenticatable
     protected $casts = ['email_verified_at' => 'datetime',];
 
     public const ADMIN_KEY = 'Administrator';
-    public const TEAM_MEM_KEY = 'Relcoation Team Member';
+    public const WORKER_KEY = 'Worker';
+    public const SUPER_KEY = 'Supervisor';
 
     public function getimageTextAttribute()
     {
@@ -30,9 +31,14 @@ class User extends Authenticatable
         return $this->role == User::ADMIN_KEY;
     }
 
-    public function isTeamMember()
+    public function isSupervisor()
     {
-        return $this->role == User::TEAM_MEM_KEY;
+        return $this->role == User::SUPER_KEY;
+    }
+
+    public function isWorker()
+    {
+        return $this->role == User::WORKER_KEY;
     }
 
     public function assignAdminRole()
@@ -63,5 +69,9 @@ class User extends Authenticatable
     public function projects()
     {
         return $this->belongsToMany(Project::class, 'project_member');
+    }
+
+    public function activities(){
+        return $this->hasMany(Activity::class);
     }
 }

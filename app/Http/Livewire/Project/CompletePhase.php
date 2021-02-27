@@ -30,7 +30,7 @@ class CompletePhase extends Component
 
     public function update()
     {
-        $this->authorize('update', ProjectPhase::class);
+        $this->authorize('update', $this->phase);
         $this->validate();
         $this->phase->completed_at = now();
         $this->phase->save();

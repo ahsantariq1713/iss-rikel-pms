@@ -2,15 +2,19 @@
 
 namespace App\Http\Livewire\Project;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 class ProjectBudget extends Component
 {
 
+    use AuthorizesRequests;
+
     public $budget;
 
     public function mount($budget)
     {
+        $this->authorize('view', $budget);
         $this->budget = $budget;
     }
 
@@ -47,7 +51,7 @@ class ProjectBudget extends Component
 
             $this->validate(['budget.tr_offsite' => 'integer|max:' . $this->budget->trResidents]);
         }
-
+        $this->authorize('update', $this->budget);
         $this->budget->save();
     }
 

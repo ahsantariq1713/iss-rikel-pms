@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Property;
+use App\Models\Budget;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PropertyPolicy
+class BudgetPolicy
 {
     use HandlesAuthorization;
 
@@ -21,32 +21,43 @@ class PropertyPolicy
         //
     }
 
-    public function view(User $user, Property $property)
+
+    public function view(User $user, Budget $budget)
+    {
+        return $budget->project->team->contains($user);
+    }
+
+
+    public function send(User $user, Budget $budget)
     {
         //
     }
+
 
     public function create(User $user)
     {
         //
     }
 
-    public function update(User $user, Property $property)
+
+    public function update(User $user, Budget $budget)
     {
         //
     }
 
-    public function delete(User $user, Property $property)
+
+    public function delete(User $user, Budget $budget)
     {
         //
     }
 
-    public function restore(User $user, Property $property)
+
+    public function restore(User $user, Budget $budget)
     {
         //
     }
 
-    public function forceDelete(User $user, Property $property)
+    public function forceDelete(User $user, Budget $budget)
     {
         //
     }

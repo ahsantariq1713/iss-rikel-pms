@@ -43,6 +43,46 @@
                             <span class="invalid-feedback">{{ $errors->first('user.mobile_number') }}</span>
                         @enderror
                     </div>
+
+                    <div class="form-group mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label">Role Type</label>
+                            @error('role')
+                            <span class="text-danger small">{{ $errors->first('role')}}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-selectgroup-boxes row mb-3">
+                            <div class="col-lg-6">
+                              <label class="form-selectgroup-item mb-3">
+                                <input type="radio" name='role' value="2" class="form-selectgroup-input"  wire:model.defer='role' {{Auth::user()->isSupervisor() ? 'disabled' : ''}}>
+                                <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                  <span class="me-3">
+                                    <span class="form-selectgroup-check"></span>
+                                  </span>
+                                  <span class="form-selectgroup-label-content">
+                                    <span class="form-selectgroup-title strong mb-1">Supervisor</span>
+                                    <span class="d-block text-muted">Can add workers, assign projects and have all permissions.</span>
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="col-lg-6">
+                              <label class="form-selectgroup-item mb-3">
+                                <input type="radio" name='role' value="1" class="form-selectgroup-input" wire:model.defer='role'>
+                                <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                  <span class="me-3">
+                                    <span class="form-selectgroup-check"></span>
+                                  </span>
+                                  <span class="form-selectgroup-label-content">
+                                    <span class="form-selectgroup-title strong mb-1">Worker</span>
+                                    <span class="d-block text-muted">Can only work on assigned projects and cannot edit or delete projects.</span>
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
+                    </div>
                 </div>
 
 
